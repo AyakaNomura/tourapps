@@ -48,3 +48,37 @@ footer {
     border-color: #ed486f;
     margin-right: 30px;
 }
+
+/* tour */
+.tour .panel-body {
+    height: 90px;
+}
+.tour .panel-heading {
+    height: 250px;
+}
+.tour .panel-heading img {
+    height: 100%;
+    max-width: 100%;
+}
+h4.tour-title {
+    /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    
+    overflow: hidden;
+}
+
+/* tour */
+.tour .panel-body {
+    height: 120px;
+}
+
+.tour .buttons form {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/* guide */
+.guide-profile li{
+    list-style: none;
+}

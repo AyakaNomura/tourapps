@@ -6,7 +6,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">ログイン</div>
             <div class="panel-body">
-                {!! Form::open(['route' => 'user_login.post']) !!}
+                {!! Form::open(['route' => 'guide_login.post']) !!}
                     <div class="form-group">
                         {!! form::label('email', 'メールアドレス') !!}
                         {!! form::email('email', old('email'), ['class' => 'form-control']) !!}

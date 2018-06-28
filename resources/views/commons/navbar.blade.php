@@ -12,10 +12,28 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                @if (Auth::check())
+                    @if(Auth::check())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="gravatar">
+                                    <img src="{{ Gravatar::src(\Auth::user()->email, 20) . '&d=mm' }}" alt="" class="img-circle">
+                                </span>
+                                {{ Auth::user()->name }}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ route('users.show', \Auth::user()->id) }}">マイページ</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="{{ route('user_logout.get') }}">観光者ログアウト</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @elseif (Auth::guard('guide')->check())
                         <li>
-                            {{-- 将来的にガイド登録者のみ表示 --}}
-                            <a href="#">
+                            <a href="{{ route('tours.create') }}">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 観光プランを作成
                             </a>
@@ -24,25 +42,24 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="gravatar">
-                                    <img src="{{ Gravatar::src(Auth::user()->email, 20) . '&d=mm' }}" alt="" class="img-circle">
+                                    <img src="{{ Gravatar::src(\Auth::guard('guide')->user()->email, 20) . '&d=mm' }}" alt="" class="img-circle">
                                 </span>
-                                {{ Auth::user()->name }}
+                                {{ Auth::guard('guide')->user()->name }}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">マイページ</a>
+                                    <a href="{{ route('guides.show', \Auth::guard('guide')->user()->id) }}">マイページ</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="{{ route('logout.get') }}">ログアウト</a>
+                                    <a href="{{ route('guide_logout.get') }}">ガイドログアウト</a>
                                 </li>
                             </ul>
                         </li>
                     @else
-                        <li><a href="{{ route('user_signup.get') }}">観光者として登録</a></li>
-                        <li><a href="#">ガイドとして登録</a></li>
-                        <li><a href="{{ route('login') }}">ログイン</a></li>
+                        <li><a href="{{ route('user_login') }}">観光者用ログイン</a></li>
+                        <li><a href="{{ route('guide_login') }}">ガイド用ログイン</a></li>
                     @endif
                 </ul>
             </div>

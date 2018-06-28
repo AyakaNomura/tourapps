@@ -49,5 +49,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+        //追加
+        if (in_array('guide', $exception->guards(), true)) {
+            return redirect()->guest(route('guide.login'));
+        }
     }
+    
 }
