@@ -1,4 +1,4 @@
-@if (Auth::check() && Auth::id() != $tour->id)
+@if (Auth::check())
     @if (Auth::user()->is_joining($tour->id))
         {!! Form::open(['route' => ['user.dont_join', $tour->id], 'method' => 'delete']) !!}
             {!! Form::submit('Unjoin', ['class' => 'btn btn-danger']) !!}
